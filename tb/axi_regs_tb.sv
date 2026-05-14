@@ -94,35 +94,39 @@ module axi_regs_tb();
               s_axi_rready       <= 1'b0;
 
         #700  s_axi_arvalid      <= 1'b1;
-              s_axi_rready       <= 1'b1;
               s_axi_araddr[31:0] <= 32'h70000000;
         @(posedge s_axi_arready) #CLK_100_MHZ_PERIOD;
               s_axi_arvalid      <= 1'b0;
-        @(posedge s_axi_rvalid) #CLK_100_MHZ_PERIOD;
+        @(posedge s_axi_rvalid) #(CLK_100_MHZ_PERIOD*3);
+              s_axi_rready       <= 1'b1;
+        #CLK_100_MHZ_PERIOD;
               s_axi_rready       <= 1'b0;
 
         #300  s_axi_arvalid      <= 1'b1;
-              s_axi_rready       <= 1'b1;
               s_axi_araddr[31:0] <= 32'h70000004;
         @(posedge s_axi_arready) #CLK_100_MHZ_PERIOD;
               s_axi_arvalid      <= 1'b0;
-        @(posedge s_axi_rvalid) #CLK_100_MHZ_PERIOD;
+        @(posedge s_axi_rvalid) #(CLK_100_MHZ_PERIOD*3);
+              s_axi_rready       <= 1'b1;
+        #CLK_100_MHZ_PERIOD;
               s_axi_rready       <= 1'b0;
 
         #300  s_axi_arvalid      <= 1'b1;
-              s_axi_rready       <= 1'b1;
               s_axi_araddr[31:0] <= 32'h70000008;
         @(posedge s_axi_arready) #CLK_100_MHZ_PERIOD;
               s_axi_arvalid      <= 1'b0;
-        @(posedge s_axi_rvalid) #CLK_100_MHZ_PERIOD;
+        @(posedge s_axi_rvalid) #(CLK_100_MHZ_PERIOD*3);
+              s_axi_rready       <= 1'b1;
+        #CLK_100_MHZ_PERIOD;
               s_axi_rready       <= 1'b0;
 
         #300  s_axi_arvalid      <= 1'b1;
-              s_axi_rready       <= 1'b1;
               s_axi_araddr[31:0] <= 32'h7000000C;
         @(posedge s_axi_arready) #CLK_100_MHZ_PERIOD;
               s_axi_arvalid      <= 1'b0;
-        @(posedge s_axi_rvalid) #CLK_100_MHZ_PERIOD;
+        @(posedge s_axi_rvalid) #(CLK_100_MHZ_PERIOD*3);
+              s_axi_rready       <= 1'b1;
+        #CLK_100_MHZ_PERIOD;
               s_axi_rready       <= 1'b0;
 
         #1500 s_axi_arvalid      <= 1'b1;

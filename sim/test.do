@@ -7,8 +7,8 @@
 vlib work
 vmap work work
 
-vlog ../tb/axi_regs_tb.v
-vlog ../src/axi_regs.v
+vlog ../tb/axi_regs_tb.sv
+vlog ../src/axi_regs.sv
 
 vsim -t 1ps -voptargs=+acc=lprn -lib work axi_regs_tb
 
