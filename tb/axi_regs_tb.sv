@@ -1,4 +1,4 @@
-// project     : axi_regs_tb
+// project     : axi_regs
 // date        : 22.01.2026
 // author      : siarhei baldzenka
 // e-mail      : sbaldzenka@proton.me
@@ -172,7 +172,6 @@ module axi_regs_tb();
 
         #2000 s_axi_awvalid      <= 1'b1;
               s_axi_awaddr[31:0] <= 32'h70000000;
-              s_axi_bready       <= 1'b1;
               s_axi_wvalid       <= 1'b1;
               s_axi_wdata[31:0]  <= 32'h10000001;
               s_axi_wstrb[3:0]   <= 4'hF;
@@ -183,7 +182,9 @@ module axi_regs_tb();
               s_axi_wvalid       <= 1'b0;
               s_axi_wdata        <= 'b0;
               s_axi_wstrb        <= 'b0;
-        @(posedge s_axi_bvalid) #CLK_100_MHZ_PERIOD;
+        @(posedge s_axi_bvalid) #(CLK_100_MHZ_PERIOD*3);
+              s_axi_bready       <= 1'b1;
+        #CLK_100_MHZ_PERIOD;
               s_axi_bready       <= 1'b0;
 
         #300 s_axi_awvalid      <= 1'b1;
@@ -199,7 +200,9 @@ module axi_regs_tb();
               s_axi_wvalid       <= 1'b0;
               s_axi_wdata        <= 'b0;
               s_axi_wstrb        <= 'b0;
-        @(posedge s_axi_bvalid) #CLK_100_MHZ_PERIOD;
+        @(posedge s_axi_bvalid) #(CLK_100_MHZ_PERIOD*3);
+              s_axi_bready       <= 1'b1;
+        #CLK_100_MHZ_PERIOD;
               s_axi_bready       <= 1'b0;
 
         #300 s_axi_awvalid      <= 1'b1;

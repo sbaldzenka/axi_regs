@@ -64,8 +64,8 @@ module axi_regs
         S_GET_WADDR,
         S_WAIT_WDATA,
         S_GET_WDATA,
-        S_WAIT_RESP,
-        S_SEND_RESP
+        S_SEND_RESP,
+        S_WAIT_RESP
     }
     states;
 
@@ -77,8 +77,6 @@ module axi_regs
     reg [DATA_WIDTH-1:0] reg_1;
     reg [DATA_WIDTH-1:0] reg_2;
     reg [DATA_WIDTH-1:0] reg_3;
-
-    assign s_axi_bresp = 2'b00;
 
     always @(posedge s_axi_aclk) begin
         if (!s_axi_aresetn) begin
@@ -124,17 +122,17 @@ module axi_regs
                 end
 
                 S_GET_WDATA: begin
+                    state <= S_SEND_RESP;
+                end
+
+                S_SEND_RESP: begin
                     state <= S_WAIT_RESP;
                 end
 
                 S_WAIT_RESP: begin
                     if (s_axi_bready) begin
-                        state <= S_SEND_RESP;
+                        state <= S_IDLE;
                     end
-                end
-
-                S_SEND_RESP: begin
-                    state <= S_IDLE;
                 end
             endcase
         end
@@ -174,16 +172,10 @@ module axi_regs
         end
     end
 
-    always @(posedge s_axi_aclk) begin
-        if (state == S_SEND_RESP) begin
-            s_axi_bvalid <= 1'b1;
-        end else begin
-            s_axi_bvalid <= 1'b0;
-        end
-    end
-
     assign s_axi_rvalid = (state == S_WAIT_READY_REG) ? 1'b1 : 1'b0;
     assign s_axi_rresp  = 2'b00;
+    assign s_axi_bvalid = (state == S_WAIT_RESP) ? 1'b1 : 1'b0;
+    assign s_axi_bresp  = 2'b00;
 
     always @(posedge s_axi_aclk) begin
         if(!s_axi_aresetn) begin
