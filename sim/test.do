@@ -1,4 +1,5 @@
--- project     : axi_regs_tb
+-- project     : axi_regs
+-- version     : 1.0
 -- date        : 22.01.2026
 -- author      : siarhei baldzenka
 -- e-mail      : sbaldzenka@proton.me
