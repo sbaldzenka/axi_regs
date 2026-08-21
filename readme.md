@@ -1,5 +1,7 @@
 # axi_regs
 
+> **version: 1.0**
+
 ## Description
 
 Module for creating *AXI-Lite* registers in RTL design.
